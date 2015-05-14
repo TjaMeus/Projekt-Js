@@ -118,3 +118,149 @@ var name;
         c.fillText('Arrows = change direction.', width/2*pixelsize, height/2*pixelsize);
         c.fillText('Space = start/pause.', width/2*pixelsize, height/1.5*pixelsize);
     }
+
+    // Funktionen för att starta spelet.
+    // Ställer den första riktningen till höger och återställer våra andra spelvariabler
+    function startGame() {
+        // Omvandlar width och height till heltal med hjälp av den statiska funktionen "floor" i kombo med Math
+        var x = Math.floor(width/2), y = Math.floor(height/2);
+        // kallar på genFood-funktionen som gör att "maten" slumpvis placeras på spelplanen
+        genFood();
+        // Kommer att placera själva ormens huvud i mitten av spelplanen samt att 
+        // tre delar(asså kroppens ökning) till vänster om huvudet.
+        // varje element i "snake"-arrayen array av koordinater
+        snake = [
+            [x, y],
+            [--x, y],
+            [--x, y],
+            [--x, y]
+        ];
+        dir = 1;
+        newdir = 1;
+        score = 0;
+        gstarted = true;
+        gpaused = false;
+        // Kallar på frame-funktionen
+        frame();
+        // Vi placerar en prompt-funktion här för att användaren ska skriva in sitt namn
+        // när den startar spelet
+        name = prompt("name"); 
+    }
+    
+    // Funktionen som aktiveras då användaren dör
+    function endGame() {
+        // den här audio spelas när användaren dör
+        death.play();
+        // genom att sätta den till false kan man inte spela mer
+        // och då skrivs det ut "Game Over" samt användarens score
+        gstarted = false;
+        c.fillStyle = 'rgba(0,0,0,0.8)';
+        c.fillRect(0, 0, width*pixelsize, height*pixelsize);
+        c.fillStyle = '#fff';
+        c.font = '20px helvetica';
+        c.textAlign = 'center';
+        c.fillText('Game Over', width/2*pixelsize, height/2*pixelsize);
+        c.fillStyle = '#fff';
+        c.font = '12px helvetica';
+        c.fillText('Score: ' + score, width/2*pixelsize, height/1.5*pixelsize);
+        
+        // Vill lagra highscore i en lista tills användaren väljer att uppdatera sidan
+        localStorage.setItem('score', score);
+            
+            // Hämtar scorevariabeln 
+            var a = localStorage.getItem('score');
+            // en variabel som ska skriva ut namnet och highscore
+            var n = name + " " + a;
+            // Skapar ett listelement för varje element
+            var lista = document.createElement("li");
+            // tar fram det aktuella highscoret med tillhörande namn hämtat från variabeln "n"
+            lista.textContent = n;
+            // Lägger till i variabeln "lista" så att det visas som listor
+            getList.appendChild(lista);
+            // återställer localstorage
+            localStorage.clear();
+        
+    }
+    
+    // Funktion för paus
+    function togglePause() {
+        // om man trycker på mellanslag pausas spelet
+        // "Paused" kommer att skrivas ut
+        if(!gpaused) {
+            gpaused = true;
+            c.fillStyle = '#fff';
+            c.font = '20px helvetica';
+            c.textAlign = 'center';
+            c.fillText('Paused', width/2*pixelsize, height/2*pixelsize);
+        }
+        // annars triggar den igång nästa "bildruta" för att återställa den pausade animationen
+        // därav kallar den på frame-funktionen
+        else {
+            gpaused = false;
+            frame();
+        }
+    }
+    
+    // Frame-funktionen
+    function frame() {
+        // Om spelet är startat eller pausat ska den inte göra någonting
+        if(!gstarted || gpaused) {
+            return;
+        }
+        // hämtar koordinaterna av ormens huvud vilket är första elementet i snake-arrayen
+        var x = snake[0][0], y = snake[0][1];
+        // här definieras hur man kan röra på ormens huvud med hjälp av en switch-funktion
+        // med fyra olika utgångsvägar
+        switch(newdir) {
+            // y-- är y-minskning vilket definierar upp-pilen på tangentbordet
+            case 0:
+                y--;
+                break;
+            case 1:
+            // x++ är x-ökning vilket är höger-pilen på tangentbordet
+                x++;
+                break;
+            case 2:
+            // y++ är y-ökning vilket är ned-pilen på tangentbordet
+                y++;
+                break;
+            case 3:
+            // x-- är x-minskning vilket är vänster-pilen på tangentbordet
+                x--;
+                break;
+        }
+        // Om huvudet kolliderar avslutas spelet.
+        // Kallar på endgame-funktionen
+        if(testCollision(x, y)) {
+            endGame();
+            return;
+        }
+        // lägger till nya koordinater i början av arrayen med hjälp av unshift-funktion
+        snake.unshift([x, y]);
+        // hanterar själva maten och highscore kopplingen samt att ny mat läggs till
+        if(x == food[0] && y == food[1]) {
+            // Om ormen lyckas äta adderas highscore med 1 poäng per gång
+            score++;
+            // eat-audio spelas upp varje gång ormen äter maten
+            eat.play();
+            // kallar på genFood-funktionen
+            genFood();
+        }
+        // annars tas den sista delen av ormen bort med hjälp av pop-funktionen på snake-arrayen
+        // skulle den inte tas bort växer ormen
+        else {
+            snake.pop();
+        }
+        // uppdaterar den nuvarande riktningen
+        dir = newdir;
+        // Själva spelplanens utseende
+        c.fillStyle = '#253';
+        c.fillRect(0, 0, width*pixelsize, height*pixelsize);
+        c.fillStyle = '#fff';
+        // kallar på funktionerna drawFood och drawSnake
+        drawFood();
+        drawSnake();
+        
+        // sätter den nya "bildrutan" i rate, millisekunder. 
+        setTimeout(frame, rate);
+    }
