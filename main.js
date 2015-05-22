@@ -307,6 +307,6 @@ var name;
         return false;
     }
     // height,width,pixelsize,rate. Det är här dessa värderna sätts in
-    setup(45, 45, 10, 60);
+    setup(30, 30, 10, 60);
  
 }(jQuery));
