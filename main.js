@@ -264,3 +264,49 @@ var name;
         // sätter den nya "bildrutan" i rate, millisekunder. 
         setTimeout(frame, rate);
     }
+      //denna funktion genererar mat på en slumpmässig plats med hjälp av math.random
+    //och utgår utan på canvaset när den räknar ut vart den kan slumpa in maten
+    function genFood() {
+        var x, y;
+        do {
+            x = Math.floor(Math.random()*(width-1));
+            y = Math.floor(Math.random()*(height-1));
+        } while(testCollision(x, y));
+        food = [x, y];
+    }
+    //tar och fyller den slumpmässig ytan genererad i genFood med en pixel
+    function drawFood() {
+        c.beginPath();
+        c.arc((food[0]*pixelsize)+pixelsize/2, (food[1]*pixelsize)+pixelsize/2, pixelsize/2, 0, Math.PI*2, false);
+        c.fill();
+    }
+    // den utgår från ormens postion och fyller den pixeln. även när ormens postion stämmer med
+    // matens postions adderas en pixel på ormens längd.
+    function drawSnake() {
+        var i, l, x, y;
+        for(i = 0, l = snake.length; i < l; i++) {
+            x = snake[i][0];
+            y = snake[i][1];
+            c.fillRect(x*pixelsize, y*pixelsize, pixelsize, pixelsize);
+        }
+    }
+    //här är de värderna för Game over. alltså om ormen träffar sig själv eller kanterna av           //canvaset blir de game over. det denna om någont om detta stämmer blir de game over
+    function testCollision(x, y) {
+        var i, l;
+        if(x < 0 || x > width-1) {
+            return true;
+        }
+        if(y < 0 || y > height-1) {
+            return true;
+        }
+        for(i = 0, l = snake.length; i < l; i++) {
+            if(x == snake[i][0] && y == snake[i][1]) {
+                return true;
+            }
+        }
+        return false;
+    }
+    // height,width,pixelsize,rate. Det är här dessa värderna sätts in
+    setup(45, 45, 10, 60);
+ 
+}(jQuery));
