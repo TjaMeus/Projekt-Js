@@ -4,16 +4,23 @@
         <meta charset="utf-8">
         <title>Snake</title>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link href='http://fonts.googleapis.com/css?family=Creepster' rel='stylesheet' type='text/css'>
     </head>
     <body>
         
-        <!--canvas för spelet-->
-        <canvas id="c"></canvas>
-    
-        <!--lista för vår highscore-->
-        <ul id="list"></ul>
-    
+        <div id="wrapper">
+
+          <!--canvas för spelet-->
+          <canvas id="c"></canvas>
+
+            <!--lista för highscore-->
+            <div id="highscore">
+                <h1>Highscore</h1>
+                    <ul id="list"></ul>
+            </div><!--#highscore-->
         
+        </div><!--#wrapper-->
+
         <!--jQuery-biblioteket-->
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
         <!--soundJs-biblioteket-->

@@ -1,0 +1,66 @@
+body {
+    
+    color:white;
+    font-family: 'Creepster', cursive;
+    overflow: scroll;
+    background-repeat: no-repeat;
+    background-position: center;
+    background: #000;
+
+}
+
+#wrapper {
+    
+    background-image: url(background.jpg);
+    background-repeat: no-repeat;
+    width: 960px;
+    height: 640px;
+    margin: 0 auto;
+
+}
+
+#c {
+    
+    padding-top: 1% ;
+    padding-left: 37.5%;
+    padding-bottom: 0px;
+
+}
+
+#highscore {
+
+    margin-top: 1% ;
+    margin-left: 37.5%;
+    width: 300px;
+    height: 300px;
+    background: #000;
+    overflow: scroll;
+
+}
+
+#highscore h1 {
+    font-family: 'Creepster', cursive;
+    color: red;
+    text-align: center;
+}
+
+#title {
+    padding-left:55px;
+    font-size: 50px;
+    text-align: center;
+
+}
+
+#list li{
+
+    font-size: 20px;
+
+}
+
+footer {
+    
+    width: 960px;
+    margin: 0 auto;
+    padding-top:10px;
+
+}
