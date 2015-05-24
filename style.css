@@ -2,7 +2,7 @@ body {
     
     color:white;
     font-family: 'Creepster', cursive;
-    overflow: scroll;
+    overflow: hidden;
     background-repeat: no-repeat;
     background-position: center;
     background: #000;
