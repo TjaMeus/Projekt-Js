@@ -215,11 +215,13 @@ deleteHS.addEventListener("click", function() {
         c.font = '16px Creepster';
         c.fillText('Score: ' + score, width/2*pixelsize, height/1.5*pixelsize);
         
-        // Vill lagra highscore i en lista tills användaren väljer att uppdatera sidan
-        //localStorage.setItem('score', score);
+        // Vill lagra highscore i en lista
+        // pushar spelarens namn och poäng i highscores
         highscores.scores.push({name:name,score:score});
+        // gör om till sträng
         localStorage.setItem("highscores",JSON.stringify(highscores));
 
+        // går igenom listan och räknar hämtar den first child element
         while (getList.firstChild) {
             getList.removeChild(getList.firstChild);
         }
@@ -238,20 +240,7 @@ deleteHS.addEventListener("click", function() {
             // Lägger till själva resultaten i variabeln "li" så att de visas som listor
             getList.appendChild(li);
         });
-
-            // Hämtar scorevariabeln 
-            //var a = localStorage.getItem('score');
-            // en variabel som ska skriva ut namnet och highscore
-            //var n = name + ":" + " " + score;
-            // Skapar ett listelement för varje element
-            //var lista = document.createElement("li");
-            // tar fram det aktuella highscoret med tillhörande namn hämtat från variabeln "n"
-            //lista.textContent = n;
-            // Lägger till i variabeln "lista" så att det visas som listor
-            //getList.insertBefore(lista, getList.firstChild);
-            // återställer localstorage
-            // localStorage.clear();
-        
+           
     }
     
     // Funktion för paus
