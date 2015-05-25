@@ -16,6 +16,23 @@ var getList = document.getElementById('list');
 //variabeln sparas i en prompt-funktion när spelet startar
 var name;
 
+var highscores = JSON.parse(localStorage.getItem('highscores'));
+
+if (!highscores) {
+    highscores = {
+        scores : []
+    };
+} else {
+    highscores.scores.sort(function(a,b) {
+        return b.score - a.score;
+    }).forEach(function(player){
+        var text = player.name + " : " + player.score;
+        var li = document.createElement("li");
+        li.textContent = text;
+        getList.appendChild(li);
+    });
+}
+
 (function ($) {
     
         //variabel för att spara referensen från vårt html-dokument
@@ -101,7 +118,7 @@ var name;
     //funktion för startsidan för spelet
     function showIntro() {
         //sätter svart bakgrund till vår canvas
-        c.fillStyle = '#000';
+        c.fillStyle = 'transparent';
         //ritar upp en rektangel som är lika stor som vår canvas
         c.fillRect(0, 0, width*pixelsize, height*pixelsize);
         //använder röd färg till vår text
@@ -167,20 +184,35 @@ var name;
         c.fillText('Score: ' + score, width/2*pixelsize, height/1.5*pixelsize);
         
         // Vill lagra highscore i en lista tills användaren väljer att uppdatera sidan
-        localStorage.setItem('score', score);
-            
+        //localStorage.setItem('score', score);
+        highscores.scores.push({name:name,score:score});
+        localStorage.setItem("highscores",JSON.stringify(highscores));
+
+        while (getList.firstChild) {
+            getList.removeChild(getList.firstChild);
+        }
+
+        highscores.scores.sort(function(a,b) {
+            return b.score - a.score;
+        }).forEach(function(player){
+            var text = player.name + " : " + player.score;
+            var li = document.createElement("li");
+            li.textContent = text;
+            getList.appendChild(li);
+        });
+        
             // Hämtar scorevariabeln 
-            var a = localStorage.getItem('score');
+            //var a = localStorage.getItem('score');
             // en variabel som ska skriva ut namnet och highscore
-            var n = name + ":" + " " + a;
+            //var n = name + ":" + " " + score;
             // Skapar ett listelement för varje element
-            var lista = document.createElement("li");
+            //var lista = document.createElement("li");
             // tar fram det aktuella highscoret med tillhörande namn hämtat från variabeln "n"
-            lista.textContent = n;
+            //lista.textContent = n;
             // Lägger till i variabeln "lista" så att det visas som listor
-            getList.appendChild(lista);
+            //getList.insertBefore(lista, getList.firstChild);
             // återställer localstorage
-            localStorage.clear();
+            // localStorage.clear();
         
     }
     
