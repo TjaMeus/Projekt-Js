@@ -191,7 +191,7 @@ var name;
         if(!gpaused) {
             gpaused = true;
             c.fillStyle = '#fff';
-            c.font = '20px helvetica';
+            c.font = '20px Creepster';
             c.textAlign = 'center';
             c.fillText('Paused', width/2*pixelsize, height/2*pixelsize);
         }
