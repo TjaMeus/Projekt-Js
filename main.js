@@ -55,6 +55,8 @@ deleteHS.addEventListener("click", function() {
             getList.removeChild(getList.firstChild);
         }
         localStorage.clear();
+         
+         
      }
 });
 
@@ -191,7 +193,7 @@ deleteHS.addEventListener("click", function() {
         // när den startar spelet
         
        
-       name = prompt("Name"); 
+        name = prompt("Name"); 
     }
     
     // Funktionen som aktiveras då användaren dör
@@ -367,6 +369,7 @@ deleteHS.addEventListener("click", function() {
                 return true;
             }
         }
+        
         return false;
     }
     // height,width,pixelsize,rate. Det är här dessa värderna sätts in
