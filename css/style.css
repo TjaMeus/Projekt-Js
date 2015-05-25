@@ -11,7 +11,7 @@ body {
 
 #wrapper {
     
-    background-image: url(background2.jpg);
+    background-image: url(../images/background.jpg);
     background-repeat: no-repeat;
     width: 960px;
     height: 640px;
@@ -68,5 +68,6 @@ body {
 
 #delete {
     margin-top: 20px;
+    margin-left: 35px;
 }
 
