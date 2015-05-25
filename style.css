@@ -62,6 +62,11 @@ body {
     display: none;
 }
 
-#food1 {
+#jumpscare {
     display: none;
 }
+
+#delete {
+    margin-top: 20px;
+}
+

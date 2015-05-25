@@ -11,6 +11,7 @@ death.src = "SoundJS-master/_assets/audio/Evil Laugh Cackle-SoundBible.com-95738
 //här hämtar vi våra element från html-dokumentet
 var getButton = document.getElementById('hamta');
 var getList = document.getElementById('list');
+var deleteHS = document.getElementById('delete');
 
 //variabel som används för att spara användarens namn när spelet startar
 //variabeln sparas i en prompt-funktion när spelet startar
@@ -32,6 +33,21 @@ if (!highscores) {
         getList.appendChild(li);
     });
 }
+
+// när radera-knappen klickas aktiveras denna funktion
+deleteHS.addEventListener("click", function() {
+        // Om det inte finns ngt i localstorage kommer det att skrivas ut detta till användaren
+     if( localStorage.length === 0 ) {
+        alert("Det finns inget att radera");
+     // Om det finns ngt att radera tar den bort den senaste elementet
+     }else {
+        while (getList.firstChild) {
+            getList.removeChild(getList.firstChild);
+        }
+        localStorage.clear();
+     }
+});
+
 
 (function ($) {
     
@@ -173,13 +189,15 @@ if (!highscores) {
         // genom att sätta den till false kan man inte spela mer
         // och då skrivs det ut "Game Over" samt användarens score
         gstarted = false;
-        c.fillStyle = 'rgba(0,0,0,0.8)';
-        c.fillRect(0, 0, width*pixelsize, height*pixelsize);
-        c.fillStyle = '#fff';
+        var img = document.getElementById("jumpscare");
+        c.drawImage(img, 0, 0);
+        //c.fillStyle = 'rgba(0,0,0,0.8)';
+        //c.fillRect(0, 0, width*pixelsize, height*pixelsize);
+        c.fillStyle = 'red';
         c.font = '26px Creepster';
         c.textAlign = 'center';
         c.fillText('Game Over', width/2*pixelsize, height/2*pixelsize);
-        c.fillStyle = '#fff';
+        c.fillStyle = 'red';
         c.font = '16px Creepster';
         c.fillText('Score: ' + score, width/2*pixelsize, height/1.5*pixelsize);
         
