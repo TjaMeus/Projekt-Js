@@ -223,13 +223,19 @@ deleteHS.addEventListener("click", function() {
         while (getList.firstChild) {
             getList.removeChild(getList.firstChild);
         }
-
+        // den här funktionen tar emot två argument och jämför dessa mot varandra för att se
+        // vilket värde som är högst.
         highscores.scores.sort(function(a,b) {
             return b.score - a.score;
+        // går igenom hela listan och sorterar dessa så att det blir i rätt ordning
         }).forEach(function(player){
+            // en variabel vars spelarens namn och poäng sparas
             var text = player.name + " : " + player.score;
+            // vi skapar listelement
             var li = document.createElement("li");
+            // tar fram det aktuella highscoret med tillhörande namn hämtat från variabeln "text"
             li.textContent = text;
+            // Lägger till själva resultaten i variabeln "li" så att de visas som listor
             getList.appendChild(li);
         });
 
