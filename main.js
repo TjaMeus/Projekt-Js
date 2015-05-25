@@ -179,7 +179,9 @@ deleteHS.addEventListener("click", function() {
         frame();
         // Vi placerar en prompt-funktion här för att användaren ska skriva in sitt namn
         // när den startar spelet
-        name = prompt("Name"); 
+        
+       
+       name = prompt("Name"); 
     }
     
     // Funktionen som aktiveras då användaren dör
