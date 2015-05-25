@@ -172,6 +172,7 @@ var name;
             // Hämtar scorevariabeln 
             var a = localStorage.getItem('score');
             // en variabel som ska skriva ut namnet och highscore
+            var n = name + ":" + " " + a;
             // Skapar ett listelement för varje element
             var lista = document.createElement("li");
             // tar fram det aktuella highscoret med tillhörande namn hämtat från variabeln "n"
