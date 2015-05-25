@@ -289,12 +289,10 @@ if (!highscores) {
         dir = newdir;
         // Själva spelplanens utseende
         // c.fillStyle = 'red';
-        window.onload = function() {
-            var img = document.getElementById("floor");
-            c.drawImage(img, 10, 10);
-        }
-        c.fillRect(0, 0, width*pixelsize, height*pixelsize);
-        c.fillStyle = '#fff';
+        var img = document.getElementById("floor");
+        c.drawImage(img, 0, 0);
+        // c.fillRect(0, 0, width*pixelsize, height*pixelsize);
+        // c.fillStyle = '#fff';
         // kallar på funktionerna drawFood och drawSnake
         drawFood();
         drawSnake();
@@ -314,7 +312,7 @@ if (!highscores) {
     }
     //tar och fyller den slumpmässig ytan genererad i genFood med en pixel
     function drawFood() {
-        c.beginPath();
+        c.beginPath();        
         c.arc((food[0]*pixelsize)+pixelsize/2, (food[1]*pixelsize)+pixelsize/2, pixelsize/2, 0, Math.PI*2, false);
         c.fill();
     }
