@@ -23,7 +23,7 @@ body {
     
     float: right;
     padding-top: 20%;
-    padding-right: 30%;
+    padding-right: 31.5%;
     padding-bottom: 0px;
 
 }
@@ -34,7 +34,7 @@ body {
     margin-top: 20%;
     width: 300px;
     height: 300px;
-    overflow: scroll;
+    overflow: auto;
 
 }
 
@@ -54,5 +54,6 @@ body {
 #list li{
 
     font-size: 20px;
+    list-style: none;
 
 }
