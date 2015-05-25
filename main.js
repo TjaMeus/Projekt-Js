@@ -50,7 +50,7 @@ var name;
         rate = r;
         canvas.height = h*ps;
         canvas.width = w*ps;
-        
+
         //event-handler för att hantera våra knapptryckningar
         $(document).keydown(function (e) {
             switch(e.which) {
@@ -146,7 +146,7 @@ var name;
         frame();
         // Vi placerar en prompt-funktion här för att användaren ska skriva in sitt namn
         // när den startar spelet
-        name = prompt("name"); 
+        name = prompt("Name"); 
     }
     
     // Funktionen som aktiveras då användaren dör
@@ -172,7 +172,6 @@ var name;
             // Hämtar scorevariabeln 
             var a = localStorage.getItem('score');
             // en variabel som ska skriva ut namnet och highscore
-            var n = name + " " + a;
             // Skapar ett listelement för varje element
             var lista = document.createElement("li");
             // tar fram det aktuella highscoret med tillhörande namn hämtat från variabeln "n"
