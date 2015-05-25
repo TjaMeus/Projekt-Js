@@ -200,7 +200,7 @@ if (!highscores) {
             li.textContent = text;
             getList.appendChild(li);
         });
-        
+
             // Hämtar scorevariabeln 
             //var a = localStorage.getItem('score');
             // en variabel som ska skriva ut namnet och highscore
@@ -288,7 +288,11 @@ if (!highscores) {
         // uppdaterar den nuvarande riktningen
         dir = newdir;
         // Själva spelplanens utseende
-        c.fillStyle = 'red';
+        // c.fillStyle = 'red';
+        window.onload = function() {
+            var img = document.getElementById("floor");
+            c.drawImage(img, 10, 10);
+        }
         c.fillRect(0, 0, width*pixelsize, height*pixelsize);
         c.fillStyle = '#fff';
         // kallar på funktionerna drawFood och drawSnake
