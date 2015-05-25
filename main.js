@@ -104,16 +104,18 @@ var name;
         c.fillStyle = '#000';
         //ritar upp en rektangel som är lika stor som vår canvas
         c.fillRect(0, 0, width*pixelsize, height*pixelsize);
-        //använder vit färg till vår text
-        c.fillStyle = '#fff';
+        //använder röd färg till vår text
+        c.fillStyle = 'red';
         //font och storlek
-        c.font = '30px sans-serif';
+        c.font = '30px Creepster';
         //centrera vår text
         c.textAlign = 'center';
         //filltext tar emot argument för text, x-koordinat, y-koordinat och max-width
-        c.fillText('Snake', width/2*pixelsize, height/4*pixelsize, width*pixelsize);
+        c.fillText('Scary Snake', width/2*pixelsize, height/4*pixelsize, width*pixelsize);
+        //använder vit färg till vår text
+        c.fillStyle = '#fff';
         //font och storlek
-        c.font = '12px sans-serif';
+        c.font = '16px Creepster';
         //här anger vi text för instruktioner för spelet
         c.fillText('Arrows = change direction.', width/2*pixelsize, height/2*pixelsize);
         c.fillText('Space = start/pause.', width/2*pixelsize, height/1.5*pixelsize);
@@ -157,11 +159,11 @@ var name;
         c.fillStyle = 'rgba(0,0,0,0.8)';
         c.fillRect(0, 0, width*pixelsize, height*pixelsize);
         c.fillStyle = '#fff';
-        c.font = '20px helvetica';
+        c.font = '26px Creepster';
         c.textAlign = 'center';
         c.fillText('Game Over', width/2*pixelsize, height/2*pixelsize);
         c.fillStyle = '#fff';
-        c.font = '12px helvetica';
+        c.font = '16px Creepster';
         c.fillText('Score: ' + score, width/2*pixelsize, height/1.5*pixelsize);
         
         // Vill lagra highscore i en lista tills användaren väljer att uppdatera sidan
@@ -254,7 +256,7 @@ var name;
         // uppdaterar den nuvarande riktningen
         dir = newdir;
         // Själva spelplanens utseende
-        c.fillStyle = '#253';
+        c.fillStyle = 'red';
         c.fillRect(0, 0, width*pixelsize, height*pixelsize);
         c.fillStyle = '#fff';
         // kallar på funktionerna drawFood och drawSnake
