@@ -213,8 +213,6 @@ deleteHS.addEventListener("click", function() {
         c.font = '26px Creepster';
         c.textAlign = 'center';
         c.fillText('Game Over', width/2*pixelsize, height/2*pixelsize);
-        c.fillStyle = 'red';
-        c.font = '16px Creepster';
         c.fillText('Score: ' + score, width/2*pixelsize, height/1.5*pixelsize);
         
         // Vill lagra highscore i en lista
@@ -251,7 +249,7 @@ deleteHS.addEventListener("click", function() {
         // "Paused" kommer att skrivas ut
         if(!gpaused) {
             gpaused = true;
-            c.fillStyle = '#fff';
+            c.fillStyle = 'red';
             c.font = '20px Creepster';
             c.textAlign = 'center';
             c.fillText('Paused', width/2*pixelsize, height/2*pixelsize);
@@ -321,8 +319,9 @@ deleteHS.addEventListener("click", function() {
         var img = document.getElementById("floor");
         c.drawImage(img, 0, 0);
         // c.fillRect(0, 0, width*pixelsize, height*pixelsize);
-        // c.fillStyle = '#fff';
-        // kallar på funktionerna drawFood och drawSnake
+        // ormen och maten är vit
+        c.fillStyle = '#fff';
+        // kallar på funktionerna drawFood och drawSnake och blir vita
         drawFood();
         drawSnake();
         
