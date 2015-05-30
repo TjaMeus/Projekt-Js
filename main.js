@@ -17,6 +17,7 @@ var deleteHS = document.getElementById('delete');
 //variabeln sparas i en prompt-funktion när spelet startar
 var name;
 
+// Tolkar strängen som en JSON
 var highscores = JSON.parse(localStorage.getItem('highscores'));
 
 // Om highscore inte finns är highscore lika med tom
@@ -27,7 +28,7 @@ if (!highscores) {
 // annars läggs highscore till samt att det sorteras i rätt ordning baserad på poängen
 } else {
     // den här funktionen tar emot två argument och jämför dessa mot varandra för att se
-    // vilket värde som är högst.
+    // vilket värde som är högst
     highscores.scores.sort(function(a,b) {
         return b.score - a.score;
     // går igenom hela listan och sorterar dessa så att det blir i rätt ordning
@@ -43,20 +44,18 @@ if (!highscores) {
     });
 }
 
-
 // när radera-knappen klickas aktiveras denna funktion
 deleteHS.addEventListener("click", function() {
-        // Om det inte finns ngt i localstorage kommer det att skrivas ut detta till användaren
+     // Om det inte finns ngt i localstorage kommer det att skrivas ut detta till användaren
      if( localStorage.length === 0 ) {
         alert("Det finns inget att radera");
-     // Om det finns ngt att radera tar den bort den senaste elementet
+     // Om det finns ngt att radera tar den bort hela listelementet genom att hämta från
+     // getList
      }else {
         while (getList.firstChild) {
             getList.removeChild(getList.firstChild);
         }
-        localStorage.clear();
-         
-         
+        localStorage.clear();   
      }
 });
 
@@ -218,7 +217,7 @@ deleteHS.addEventListener("click", function() {
         // Vill lagra highscore i en lista
         // pushar spelarens namn och poäng i highscores
         highscores.scores.push({name:name,score:score});
-        // gör om till sträng
+        // konverterar javascript värdet till en JSON-sträng
         localStorage.setItem("highscores",JSON.stringify(highscores));
 
         // går igenom listan och räknar hämtar den first child element
