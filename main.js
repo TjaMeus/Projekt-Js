@@ -206,8 +206,7 @@ deleteHS.addEventListener("click", function() {
         // genom att hämta bilden från HTML-filen samt "drawImage" tar den fram bilden
         var img = document.getElementById("jumpscare");
         c.drawImage(img, 0, 0);
-        //c.fillStyle = 'rgba(0,0,0,0.8)';
-        //c.fillRect(0, 0, width*pixelsize, height*pixelsize);
+        // Texterna och dess utseende
         c.fillStyle = 'red';
         c.font = '26px Creepster';
         c.textAlign = 'center';
@@ -313,17 +312,14 @@ deleteHS.addEventListener("click", function() {
         }
         // uppdaterar den nuvarande riktningen
         dir = newdir;
-        // Själva spelplanens utseende
-        // c.fillStyle = 'red';
+        // Själva spelplanens utseende som är en bild vi själv lagt till
         var img = document.getElementById("floor");
         c.drawImage(img, 0, 0);
-        // c.fillRect(0, 0, width*pixelsize, height*pixelsize);
         // ormen och maten är vit
         c.fillStyle = '#fff';
         // kallar på funktionerna drawFood och drawSnake och blir vita
         drawFood();
-        drawSnake();
-        
+        drawSnake(); 
         // sätter den nya "bildrutan" i rate, millisekunder. 
         setTimeout(frame, rate);
     }
